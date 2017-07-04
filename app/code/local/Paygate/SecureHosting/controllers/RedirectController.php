@@ -138,10 +138,10 @@ protected $_order;
 						->save();
 					$invoice->sendEmail(true,'');
 					$newStatus = Mage_Sales_Model_Order::STATE_COMPLETE;
-					$message = Mage::helper('securehosting')->__("Transaction complete, transaction reference: \"$_GET[transactionnumber]\"<br />Order Invoiced");
+					$message = Mage::helper('securehosting')->__("Transaction complete, transaction reference: ".$_GET[transactionnumber]."<br />AVS Result: ".$_GET[cv2avsresult]."<br />Authorisation Code: ".$_GET[upgauthcode]."<br />Transaction Time: ".$_GET[transactiontime]."<br />Order Invoiced");
 				} else {
 					$newStatus = Mage_Sales_Model_Order::STATE_PROCESSING;
-					$message = Mage::helper('securehosting')->__("Transaction complete, transaction reference: \"$_GET[transactionnumber]\"");
+					$message = Mage::helper('securehosting')->__("Transaction complete, transaction reference: ".$_GET[transactionnumber]."<br />AVS Result: ".$_GET[cv2avsresult]."<br />Authorisation Code: ".$_GET[upgauthcode]."<br />Transaction Time: ".$_GET[transactiontime]);
 				}
 				$order->addStatusToHistory($newStatus,$message);
 				$order->save();
